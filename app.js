@@ -143,14 +143,17 @@ function Bank_Deposit(amount) {
 }//end function
 
 function Bank_Withdraw(amount) {
+    //TERNARY OPERATOR
+    //balance >= amount ? ((balance -= amount), console.log("Withdraw: $ " + amount)) : console.log("insufficent funds");
     //Check the request is less than your balance then withdraw
-    if (amount <= balance) {
+     if (amount <= balance) {
         balance -= amount;
         console.log(`Withdrew: ${amount}`);
         //If your balace is less than your request then it invalid!
     } else {
         console.log('Insufficient funds');
     }
+        
 }//end function
 
 function Bank_CheckBalance() {
