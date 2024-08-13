@@ -247,7 +247,9 @@ RemoveTask(toDo[2]);
 //? Create a program that converts temperatures between Celsius, Fahrenheit, and Kelvin.
  
 //TODO Define Variables: Allow the user to input a temperature value and the unit they want to convert from.
-
+let temp = prompt("What is the temperature: ");
+let unit = prompt("Which is the unit you want to convert - C, F, K: ")
+TemperatureConvert(temp, unit);
 //TODO Create Functions: Create functions to convert between Celsius, Fahrenheit, and Kelvin.
 
 //? (Hint: There will be two arguements temperature value and unit letter (Celsius, Farenheit, Kelvin))
@@ -255,16 +257,134 @@ RemoveTask(toDo[2]);
  
 //* KelvinToCelsius conversion:
 //* kelvinNum - 273.15
+// Function to convert Kelvin to Celsius
+function kelvinToCelsius(kelvin) {
+    return kelvin - 273.15;
+}
  
 //* celsiusToKelvin:
 //* celsiusNum + 273.15
+// Function to convert Celsius to Kelvin
+function celsiusToKelvin(celsius) {
+    return celsius + 273.15;
+}
  
 //* fahrenheitToCelsius:
 //* (fahrenheit - 32) * 5/9
+// Function to convert Fahrenheit to Celsius
+function fahrenheitToCelsius(fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
  
 //* celsiusToFahrenheit:
 //* (celsius * 9/5) + 32
- 
- 
+// Function to convert Celsius to Fahrenheit
+function celsiusToFahrenheit(celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+
+function TemperatureConvert (value, unit) {
+    let celsius;
+    let fahrenheit;
+    let kelvin;
+    let int = parseInt(value);
+
+    if ( unit === "C") {
+        celsius = parseInt(int);
+        fahrenheit = celsiusToFahrenheit(int);
+        kelvin = celsiusToKelvin(int);
+    } else if (unit === "F") {
+        celsius = fahrenheitToCelsius(int);
+        fahrenheit = int;
+        kelvin = celsiusToKelvin(celsius)
+    } else if (unit === "K") {
+        celsius = kelvinToCelsius(int);
+        fahrenheit = celsiusToFahrenheit(celsius);
+        kelvin = int;
+    } else {
+        console.log("Invalid Unit");
+        return;
+    }
+
+    console.log(`Celsius: ${celsius.toFixed(2)}°C`);
+    console.log(`Fahrenheit: ${fahrenheit.toFixed(2)}°F`);
+    console.log(`Kelvin: ${kelvin.toFixed(2)}°K`);
+} 
 //TODO  Use if-else Statements: Use if-else statements to determine which conversion to perform based on the user's input.
 //* Output Results: Use console.log to display the converted temperature.
+
+ 
+ 
+//! Music Playlist Manager
+//? Create a program that allows the user to manage a playlist of songs.
+ 
+//TODO Define an Array: Define an array to store the song titles.
+let songs = [];
+//TODO Create Functions: Create functions to add a song, remove a song, and display the playlist.
+function addSong(song) {
+    songs.push(song);
+    console.log(`Song added to playlist: ${song}`);
+    Playlist();
+}
+
+function Playlist(){
+    songCount = 0;
+    console.log("Playlist:");
+    for (let i = 0; i < songs.length; i++) {
+    songCount++;
+    console.log(`${songCount}. ${songs[i]}`);
+}
+
+}
+
+function RemoveSong(deleted){
+    if (deleted > 0 && deleted <= songs.length) {
+        console.log(`Remove a song from Playlist: ${songs[deleted - 1]}`);
+        songs.splice(deleted - 1, 1);
+        Playlist();
+    } else {
+        console.log("Invalid: Which song??");
+    }
+}
+//TODO Use if-else Statements and Loops: Use if-else statements and loops within the functions to handle the operations.
+
+//* Output Results: Use console.log to display the playlist after each operation.
+ addSong("I want to get free");
+ addSong("Adieu");
+ addSong("Paladin Strait")
+
+RemoveSong(1)
+ 
+//! Daily Temperatures
+//? Create a program that processes daily temperature readings, calculates the average temperature, and identifies the highest and lowest temperatures.
+ 
+//TODO Predefine an Array of Temperatures: Start with an array of numbers representing daily temperatures.
+let temperatures = [72, 75, 79, 83, 78, 85, 90];
+let checkTemp = TempAverage(temperatures);
+let checkHigh = TempHighest(temperatures);
+let checkLow = TempLowest(temperatures);
+//TODO Calculate the Average Temperature: Write a function to calculate the average of the temperatures.
+function TempAverage(temps){
+    let sum = 0;
+    for (let i = 0; i < temps.length; i++) {
+        sum += temps[i];
+    }
+    return sum / temps.length;
+}
+
+console.log(`Average Temperature: ${checkTemp.toFixed(2)}°`);
+
+//TODO Find the Highest Temperature: Write a function to find the highest temperature in the array.
+function TempHighest(temps){
+    temps = Math.max(...temps);
+    return temps;
+}
+console.log(`Highest Temperature: ${checkHigh}°`);
+
+//TODO Find the Lowest Temperature: Write a function to find the lowest temperature in the array.
+function TempLowest(temps){
+    temps = Math.min(...temps);
+    return temps;
+}
+console.log(`Lowest Temperature: ${checkLow}°`);
+ 
